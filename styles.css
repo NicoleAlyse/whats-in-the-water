@@ -44,7 +44,6 @@ body {
   max-width: 600px;
   margin: 10px auto;
 }
-``
 
 .hero-buttons {
   margin-top: 15px;
@@ -172,6 +171,7 @@ footer {
   border-radius: 12px;
   text-align: center;
 }
+
 
 .facts h2 {
   font-size: 28px;
