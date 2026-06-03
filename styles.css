@@ -269,3 +269,8 @@ footer {
 .section:nth-of-type(odd) {
   background: #f0f4f3;
 }
+
+iframe {
+  display: block;
+  width: 100%;
+}
