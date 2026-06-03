@@ -226,13 +226,17 @@ footer {
 
 .slide {
   flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
 }
 
 .carousel-track img {
-  width: 100%;
-  max-height: 400px;
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 /* buttons */
