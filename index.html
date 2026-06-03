@@ -209,14 +209,11 @@ let index = 0;
 
 function moveSlide(step) {
   const track = document.querySelector('.carousel-track');
-  const slides = document.querySelectorAll('.slide');
-  const slideWidth = slides[0].clientWidth;
-
-  const total = slides.length;
+  const total = document.querySelectorAll('.slide').length;
 
   index = (index + step + total) % total;
 
-  track.style.transform = "translateX(-" + (index * slideWidth) + "px)";
+  track.style.transform = `translateX(-${index * 100}%)`;
 }
 </script>
 
