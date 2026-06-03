@@ -172,10 +172,9 @@ footer {
 
 
 .sponsor-logos img {
-  max-height: 100px;
+  max-height: 80px;
   max-width: 250px;
   object-fit: contain;
-  opacity: 0.9;
 }
 
 .sponsor-logos img:hover {
