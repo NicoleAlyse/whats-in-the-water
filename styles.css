@@ -39,6 +39,15 @@ body {
   letter-spacing: 1px;
 }
 
+.hero h1 {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .hero p {
   font-size: 18px;
   max-width: 600px;
@@ -55,6 +64,12 @@ body {
   border-radius: 6px;
   display: inline-block;
   text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .primary {
@@ -96,6 +111,11 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .gallery {
@@ -239,4 +259,13 @@ footer {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Section Background Alternation */
+.section:nth-of-type(even) {
+  background: #ffffff;
+}
+
+.section:nth-of-type(odd) {
+  background: #f0f4f3;
 }
