@@ -230,9 +230,8 @@ footer {
 
 .carousel-track img {
   width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: contain;
+  height: 350px;
+  object-fit: cover;
 }
 
 /* buttons */
