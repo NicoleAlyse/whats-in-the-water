@@ -35,8 +35,16 @@ body {
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  letter-spacing: 1px;
 }
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 10px auto;
+}
+``
 
 .hero-buttons {
   margin-top: 15px;
@@ -158,10 +166,19 @@ footer {
 }
 
 .facts div {
-  background: #dcebe7;
-  padding: 20px;
+  background: #0f3d3e;
+  color: white;
+  padding: 25px;
   border-radius: 12px;
   text-align: center;
-  font-weight: bold;
-  font-size: 16px;
+}
+
+.facts h2 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.facts p {
+  margin: 5px 0 0;
+  font-size: 14px;
 }
