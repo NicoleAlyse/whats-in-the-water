@@ -84,9 +84,10 @@ body {
   gap: 12px;
 }
 
-.card a {
-  display: inline-block;
-  margin-top: 10px;
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .gallery {
