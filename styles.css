@@ -1,8 +1,9 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f6f7f5;
-  color: #1f2a2e;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Lora', serif;
 }
 
 .nav {
