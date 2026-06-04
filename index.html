@@ -274,48 +274,98 @@ function moveSlide(step) {
 }
 </script>
 
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-const labels = ["April", "September"];
 
-const salinityData = [35, 24];
-const tnData = [0.6, 2.5];
-const tpData = [0.16, 0.13];
-const chlData = [30, 25];
+const aprilData = [
+  {x: -0.12, y: 36, site: "Castle Beach"},
+  {x: -0.08, y: 35, site: "Shamron"},
+  {x: -0.06, y: 35, site: "Wyndham"},
+  {x: -0.04, y: 36, site: "Outrigger"},
+  {x: -0.02, y: 36, site: "Gulf Dr"},
+  {x: 0.00, y: 36, site: "Lahaina/Sandpiper"},
+  {x: 0.02, y: 36, site: "Smugglers Cove"},
+  {x: 0.04, y: 35, site: "Newton Park"},
+  {x: 0.06, y: 35, site: "Hercules Dr"},
+  {x: 0.08, y: 36, site: "Connecticut Access"},
+  {x: 0.10, y: 35, site: "Junkanoo"},
+  {x: 0.12, y: 35, site: "Pompano St"},
+  {x: 0.14, y: 35, site: "Neptune Hotel"},
+  {x: 0.16, y: 35, site: "Lani Kai"},
+  {x: 0.18, y: 35, site: "FMB Pier North"},
+  {x: 0.20, y: 34, site: "Best Western"},
+  {x: -0.10, y: 34, site: "Pelican Beach House"},
+  {x: -0.07, y: 34, site: "Bowditch Gulf"},
+  {x: -0.05, y: 35, site: "Bowditch Bay"},
+  {x: -0.03, y: 35, site: "Pink Shell Bay"},
+  {x: -0.01, y: 34, site: "Harbor Ct Bay"},
+  {x: 0.03, y: 34, site: "Palermo Bay"},
+  {x: 0.07, y: 35, site: "Coconut"},
+  {x: 0.09, y: 35, site: "Bayland Madera"},
+  {x: 0.11, y: 35, site: "Williams Dr"},
+  {x: 0.13, y: 35, site: "Lenell Rd"},
+  {x: -0.09, y: 25, site: "Islands End"},
+  {x: -0.06, y: 33, site: "Bay Beach Lagoon"},
+  {x: -0.02, y: 43, site: "CWA Lagoon Mid"}
+];
 
-// SALINITY
+const septemberData = [
+  {x: 0.88, y: 25, site: "Castle Beach"},
+  {x: 0.90, y: 18, site: "CWA South Houses"},
+  {x: 0.92, y: 20, site: "Shamron"},
+  {x: 0.94, y: 28, site: "Wyndham"},
+  {x: 0.96, y: 29, site: "Outrigger"},
+  {x: 0.98, y: 28, site: "Gulf Dr"},
+  {x: 1.00, y: 28, site: "Sandpiper"},
+  {x: 1.02, y: 27, site: "Smugglers Cove"},
+  {x: 1.04, y: 25, site: "Newton Park"},
+  {x: 1.06, y: 24, site: "Hercules Dr"},
+  {x: 1.08, y: 28, site: "Connecticut Access"},
+  {x: 1.10, y: 30, site: "Junkanoo"},
+  {x: 1.12, y: 27, site: "Pompano St"},
+  {x: 1.14, y: 26, site: "Neptune Hotel"},
+  {x: 1.16, y: 25, site: "Lani Kai"},
+  {x: 1.18, y: 26, site: "FMB Pier North"},
+  {x: 1.20, y: 19, site: "Best Western"},
+  {x: 0.95, y: 20, site: "Pelican Beach House"},
+  {x: 1.05, y: 25, site: "Bowditch Gulf"},
+  {x: 1.10, y: 20, site: "Bowditch Bay"},
+  {x: 1.15, y: 20, site: "Pink Shell Bay"},
+  {x: 1.18, y: 18, site: "Carlos Circle"},
+  {x: 1.08, y: 20, site: "Harbor Ct"},
+  {x: 1.12, y: 14, site: "Palermo Bay"},
+  {x: 1.18, y: 17, site: "Pearl St"},
+  {x: 0.92, y: 10, site: "Gulf Beach Dr Bay"},
+  {x: 1.00, y: 17, site: "Madison CT"},
+  {x: 1.05, y: 13, site: "Bay Mar"},
+  {x: 1.10, y: 15, site: "Coconut"},
+  {x: 1.12, y: 27, site: "Bayland Madera"},
+  {x: 1.08, y: 20, site: "Williams Dr"},
+  {x: 1.00, y: 19, site: "Seminole Way"},
+  {x: 1.15, y: 30, site: "Flamingo"},
+  {x: 1.05, y: 30, site: "Lenell Rd"},
+  {x: 1.10, y: 21, site: "Buccaneer"},
+  {x: 1.00, y: 20, site: "Islands End"},
+  {x: 1.12, y: 20, site: "Bay Beach Lagoon"},
+  {x: 0.96, y: 19, site: "CWA Lagoon South"},
+  {x: 1.08, y: 21, site: "CWA Lagoon North"},
+  {x: 1.18, y: 6, site: "Matanzas Preserve Entry"}
+];
+
 new Chart(document.getElementById("salinityChart"), {
   type: "scatter",
   data: {
     datasets: [
       {
         label: "April",
-        data: [
-          {x: -0.1, y: 36, site: "Castle Beach"},
-          {x: 0.0,  y: 35, site: "Shamron"},
-          {x: 0.05, y: 35, site: "Wyndham"},
-          {x: -0.05,y: 36, site: "Outrigger"},
-          {x: 0.1,  y: 36, site: "Gulf Dr"},
-          {x: 0.15, y: 35, site: "Newton Park"},
-          {x: -0.08,y: 34, site: "Best Western"},
-          {x: 0.12, y: 34, site: "Pelican Beach House"}
-        ],
+        data: aprilData,
         backgroundColor: "#2ca25f",
         pointRadius: 5
       },
       {
         label: "September",
-        data: [
-          {x: 0.9, y: 25, site: "Castle Beach"},
-          {x: 1.0, y: 18, site: "CWA South"},
-          {x: 1.05,y: 20, site: "Shamron"},
-          {x: 1.1, y: 28, site: "Wyndham"},
-          {x: 0.95,y: 29, site: "Outrigger"},
-          {x: 1.15,y: 27, site: "Gulf Dr"},
-          {x: 1.05,y: 24, site: "Newton Park"},
-          {x: 1.2, y: 20, site: "Pelican Beach House"}
-        ],
+        data: septemberData,
         backgroundColor: "#3182bd",
         pointRadius: 5
       }
@@ -360,8 +410,9 @@ new Chart(document.getElementById("salinityChart"), {
     }
   }
 });
-</script>
 
+</script>
+ 
 // TN
 new Chart(document.getElementById("tnChart"), {
   type: "bar",
