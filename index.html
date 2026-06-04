@@ -292,10 +292,14 @@ new Chart(document.getElementById("salinityChart"), {
       {
         label: "April",
         data: [
-          {x: -0.2, y: 36}, {x: -0.15, y: 35}, {x: -0.1, y: 36},
-          {x: -0.05, y: 35}, {x: 0, y: 34}, {x: 0.05, y: 35},
-          {x: 0.1, y: 36}, {x: 0.15, y: 35}, {x: 0.2, y: 34},
-          {x: -0.12, y: 33}, {x: 0.08, y: 43}, {x: 0.18, y: 25}
+          {x: -0.1, y: 36, site: "Castle Beach"},
+          {x: 0.0,  y: 35, site: "Shamron"},
+          {x: 0.05, y: 35, site: "Wyndham"},
+          {x: -0.05,y: 36, site: "Outrigger"},
+          {x: 0.1,  y: 36, site: "Gulf Dr"},
+          {x: 0.15, y: 35, site: "Newton Park"},
+          {x: -0.08,y: 34, site: "Best Western"},
+          {x: 0.12, y: 34, site: "Pelican Beach House"}
         ],
         backgroundColor: "#2ca25f",
         pointRadius: 5
@@ -303,57 +307,58 @@ new Chart(document.getElementById("salinityChart"), {
       {
         label: "September",
         data: [
-          {x: 0.8, y: 25}, {x: 0.85, y: 18}, {x: 0.9, y: 20},
-          {x: 0.95, y: 28}, {x: 1.0, y: 29}, {x: 1.05, y: 28},
-          {x: 1.1, y: 27}, {x: 1.15, y: 25}, {x: 1.2, y: 24},
-          {x: 0.9, y: 19}, {x: 1.05, y: 20}, {x: 1.15, y: 14},
-          {x: 1.1, y: 17}, {x: 1.0, y: 15}, {x: 0.95, y: 10},
-          {x: 1.2, y: 30}, {x: 1.1, y: 21}, {x: 0.85, y: 26},
-          {x: 1.15, y: 6}
+          {x: 0.9, y: 25, site: "Castle Beach"},
+          {x: 1.0, y: 18, site: "CWA South"},
+          {x: 1.05,y: 20, site: "Shamron"},
+          {x: 1.1, y: 28, site: "Wyndham"},
+          {x: 0.95,y: 29, site: "Outrigger"},
+          {x: 1.15,y: 27, site: "Gulf Dr"},
+          {x: 1.05,y: 24, site: "Newton Park"},
+          {x: 1.2, y: 20, site: "Pelican Beach House"}
         ],
         backgroundColor: "#3182bd",
         pointRadius: 5
       }
     ]
   },
-options: {
-  plugins: {
-    title: {
-      display: true,
-      text: "Salinity Distribution (April vs September)"
-    },
-    tooltip: {
-      callbacks: {
-        label: function(context) {
-          return context.dataset.label + ": " + context.raw.y + " ppt";
+  options: {
+    plugins: {
+      title: {
+        display: true,
+        text: "Salinity Distribution (April vs September)"
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.raw.site + ": " + context.raw.y + " ppt";
+          }
         }
       }
-    }
-  },
-  scales: {
-    x: {
-      min: -0.5,
-      max: 1.5,
-      ticks: {
-        callback: function(value) {
-          if (value === 0) return "April";
-          if (value === 1) return "September";
-          return "";
+    },
+    scales: {
+      x: {
+        min: -0.5,
+        max: 1.5,
+        ticks: {
+          callback: function(value) {
+            if (value === 0) return "April";
+            if (value === 1) return "September";
+            return "";
+          }
+        },
+        title: {
+          display: true,
+          text: "Sampling Event"
         }
       },
-      title: {
-        display: true,
-        text: "Sampling Event"
-      }
-    },
-    y: {
-      title: {
-        display: true,
-        text: "Salinity (ppt)"
+      y: {
+        title: {
+          display: true,
+          text: "Salinity (ppt)"
+        }
       }
     }
   }
-}
 });
 </script>
 
