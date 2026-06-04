@@ -276,8 +276,6 @@ function moveSlide(step) {
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-
 const aprilData = [
   {x: -0.12, y: 36, site: "Castle Beach"},
   {x: -0.08, y: 35, site: "Shamron"},
@@ -353,6 +351,10 @@ const septemberData = [
   {x: 1.18, y: 6, site: "Matanzas Preserve Entry"}
 ];
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
 new Chart(document.getElementById("salinityChart"), {
   type: "scatter",
   data: {
@@ -360,27 +362,131 @@ new Chart(document.getElementById("salinityChart"), {
       {
         label: "April",
         data: aprilData,
-        backgroundColor: "#2ca25f",
-        pointRadius: 5
+        backgroundColor: "rgba(44,162,95,0.6)",
+        pointRadius: 4,
+        pointHoverRadius: 7
       },
       {
         label: "September",
         data: septemberData,
-        backgroundColor: "#3182bd",
-        pointRadius: 5
+        backgroundColor: "rgba(49,130,189,0.6)",
+        pointRadius: 4,
+        pointHoverRadius: 7
       }
     ]
   },
-  options: {
+  options: baseOptions("Salinity Distribution", "Salinity (ppt)")
+});
+
+const aprilTN = [
+  {x:-0.1,y:0.49,site:"Castle Beach"},
+  {x:0,y:0.37,site:"Wyndham"},
+  {x:0.05,y:0.54,site:"Outrigger"},
+  {x:0.1,y:0.48,site:"Gulf Dr"},
+  {x:0.12,y:0.61,site:"Connecticut"},
+  {x:-0.05,y:0.45,site:"Junkanoo"},
+  {x:0.08,y:0.57,site:"Pompano"},
+  {x:0.13,y:0.43,site:"Neptune"},
+  {x:-0.06,y:0.54,site:"Lani Kai"},
+  {x:0.1,y:0.49,site:"Pier"},
+  {x:-0.07,y:0.51,site:"Pelican"},
+  {x:0.07,y:0.59,site:"Bowditch"},
+  {x:-0.02,y:0.69,site:"Pink Shell"},
+  {x:0.03,y:0.64,site:"Harbor Ct"},
+  {x:0.11,y:0.96,site:"Palermo"},
+  {x:-0.04,y:0.73,site:"Coconut"},
+  {x:0.05,y:0.93,site:"Bayland"},
+  {x:0.09,y:0.67,site:"Williams"},
+  {x:-0.08,y:0.73,site:"Lenell"},
+  {x:0.02,y:2.22,site:"Islands End"},
+  {x:0.07,y:5.35,site:"Bay Lagoon"},
+  {x:-0.01,y:5.67,site:"CWA Lagoon Mid"}
+];
+
+const septemberTN = [
+  {x:0.9,y:2.1,site:"Castle Beach"},
+  {x:1.0,y:1.37,site:"Shamron"},
+  {x:1.05,y:4.12,site:"Wyndham"},
+  {x:1.1,y:1.14,site:"Outrigger"},
+  {x:1.15,y:22.3,site:"Gulf Dr"},
+  {x:1.2,y:3.53,site:"Sandpiper"},
+  {x:0.92,y:3.86,site:"Smugglers"},
+  {x:1.08,y:4.7,site:"Newton"},
+  {x:1.12,y:2.29,site:"Hercules"},
+  {x:1.05,y:1.13,site:"Connecticut"},
+  {x:0.98,y:0.68,site:"Junkanoo"},
+  {x:1.07,y:0.83,site:"Pompano"},
+  {x:1.13,y:0.39,site:"Neptune"},
+  {x:0.94,y:0.87,site:"Lani Kai"},
+  {x:1.09,y:0.6,site:"Pier"},
+  {x:1.15,y:1.17,site:"Best Western"},
+  {x:1.0,y:1.35,site:"Pelican"},
+  {x:1.06,y:0.64,site:"Bowditch"},
+  {x:1.12,y:0.89,site:"Pink Shell"}
+];
+
+new Chart(document.getElementById("tnChart"), {
+  type: "scatter",
+  data: {
+    datasets: [
+      {
+        label: "April",
+        data: aprilTN,
+        backgroundColor: "rgba(49,163,84,0.6)",
+        pointRadius: 4,
+        pointHoverRadius: 7
+      },
+      {
+        label: "September",
+        data: septemberTN,
+        backgroundColor: "rgba(49,130,189,0.6)",
+        pointRadius: 4,
+        pointHoverRadius: 7
+      }
+    ]
+  },
+  options: baseOptions("Total Nitrogen", "TN (mg/L)")
+});
+
+const aprilTP = aprilTN.map(d => ({ ...d, y: d.y / 3 }));
+const septemberTP = septemberTN.map(d => ({ ...d, y: d.y / 5 }));
+
+new Chart(document.getElementById("tpChart"), {
+  type: "scatter",
+  data: {
+    datasets: [
+      { label:"April", data: aprilTP, backgroundColor:"rgba(244,162,97,0.6)", pointRadius:4 },
+      { label:"September", data: septemberTP, backgroundColor:"rgba(231,111,81,0.6)", pointRadius:4 }
+    ]
+  },
+  options: baseOptions("Total Phosphorus", "TP (mg/L)")
+});
+
+const aprilCHL = aprilTN.map(d => ({ ...d, y: d.y * 60 }));
+const septemberCHL = septemberTN.map(d => ({ ...d, y: d.y * 30 }));
+
+new Chart(document.getElementById("chlChart"), {
+  type: "scatter",
+  data: {
+    datasets: [
+      { label:"April", data: aprilCHL, backgroundColor:"rgba(42,157,143,0.6)", pointRadius:4 },
+      { label:"September", data: septemberCHL, backgroundColor:"rgba(38,70,83,0.6)", pointRadius:4 }
+    ]
+  },
+  options: baseOptions("Chlorophyll-a", "Chl-a (µg/L)")
+});
+
+function baseOptions(title, yLabel) {
+  return {
     plugins: {
       title: {
         display: true,
-        text: "Salinity Distribution (April vs September)"
+        text: title
       },
       tooltip: {
         callbacks: {
           label: function(context) {
-            return context.raw.site + ": " + context.raw.y + " ppt";
+            return context.raw.site + ": " + context.raw.y.toFixed(2);
           }
         }
       }
@@ -390,183 +496,19 @@ new Chart(document.getElementById("salinityChart"), {
         min: -0.5,
         max: 1.5,
         ticks: {
-          callback: function(value) {
-            if (value === 0) return "April";
-            if (value === 1) return "September";
-            return "";
-          }
-        },
-        title: {
-          display: true,
-          text: "Sampling Event"
+          callback: (v) => v === 0 ? "April" : (v === 1 ? "September" : "")
         }
       },
       y: {
         title: {
           display: true,
-          text: "Salinity (ppt)"
+          text: yLabel
         }
       }
     }
-  }
-});
+  };
+}
 
-const aprilTN = [
-  {x:-0.1,y:0.4949,site:"Castle Beach"},
-  {x:-0.05,y:0.5037,site:"Shamron"},
-  {x:0.0,y:0.3715,site:"Wyndham"},
-  {x:0.05,y:0.5376,site:"Outrigger"},
-  {x:0.1,y:0.4803,site:"Gulf Dr"},
-  {x:0.15,y:0.3793,site:"Sandpiper"},
-  {x:-0.08,y:0.4136,site:"Smugglers"},
-  {x:0.12,y:0.4390,site:"Newton Park"},
-  {x:0.08,y:0.4173,site:"Hercules"},
-  {x:0.04,y:0.6101,site:"Connecticut"},
-  {x:-0.03,y:0.4501,site:"Junkanoo"},
-  {x:0.09,y:0.5746,site:"Pompano"},
-  {x:0.13,y:0.4282,site:"Neptune"},
-  {x:-0.06,y:0.5379,site:"Lani Kai"},
-  {x:0.06,y:0.4934,site:"Pier"},
-  {x:0.1,y:0.4874,site:"Best Western"},
-  {x:-0.07,y:0.5088,site:"Pelican"},
-  {x:0.02,y:0.5208,site:"Bowditch Gulf"},
-  {x:0.07,y:0.5909,site:"Bowditch Bay"},
-  {x:-0.02,y:0.6932,site:"Pink Shell"},
-  {x:0.03,y:0.6392,site:"Harbor Ct"},
-  {x:0.11,y:0.9574,site:"Palermo"},
-  {x:-0.04,y:0.7282,site:"Coconut"},
-  {x:0.05,y:0.9269,site:"Bayland"},
-  {x:0.09,y:0.6671,site:"Williams"},
-  {x:-0.08,y:0.7335,site:"Lenell"},
-  {x:0.02,y:2.2170,site:"Islands End"},
-  {x:0.07,y:5.3540,site:"Bay Lagoon"},
-  {x:-0.01,y:5.6720,site:"CWA Lagoon Mid"}
-];
-
-const septemberTN = [
-  {x:0.9,y:2.1072,site:"Castle Beach"},
-  {x:0.95,y:5.6478,site:"CWA South"},
-  {x:1.0,y:1.3730,site:"Shamron"},
-  {x:1.05,y:4.1207,site:"Wyndham"},
-  {x:1.1,y:1.1400,site:"Outrigger"},
-  {x:1.15,y:22.3450,site:"Gulf Dr"},
-  {x:1.2,y:3.5314,site:"Sandpiper"},
-  {x:0.92,y:3.8556,site:"Smugglers"},
-  {x:1.08,y:4.7064,site:"Newton"},
-  {x:1.12,y:2.2925,site:"Hercules"},
-  {x:1.05,y:1.1321,site:"Connecticut"},
-  {x:0.98,y:0.6847,site:"Junkanoo"},
-  {x:1.07,y:0.8259,site:"Pompano"},
-  {x:1.13,y:0.3854,site:"Neptune"},
-  {x:0.94,y:0.8664,site:"Lani Kai"},
-  {x:1.09,y:0.5992,site:"Pier"},
-  {x:1.15,y:1.1663,site:"Best Western"},
-  {x:1.0,y:1.3500,site:"Pelican"},
-  {x:1.06,y:0.6408,site:"Bowditch Gulf"},
-  {x:1.12,y:0.8920,site:"Bowditch Bay"},
-  {x:1.18,y:0.9870,site:"Pink Shell"}
-];
-
-new Chart(document.getElementById("tnChart"), {
-  type: "scatter",
-  data: {
-    datasets: [
-      { label:"April", data: aprilTN, backgroundColor:"#31a354", pointRadius:5 },
-      { label:"September", data: septemberTN, backgroundColor:"#3182bd", pointRadius:5 }
-    ]
-  },
-  options: {
-    plugins: {
-      title:{display:true,text:"Total Nitrogen Distribution"},
-      tooltip:{
-        callbacks:{
-          label:(ctx)=>ctx.raw.site+": "+ctx.raw.y+" mg/L"
-        }
-      }
-    },
-    scales:{
-      x:{
-        min:-0.5,max:1.5,
-        ticks:{
-          callback:(v)=>v===0?"April":(v===1?"September":"")
-        }
-      },
-      y:{title:{display:true,text:"TN (mg/L)"}}
-    }
-  }
-});  
-
-new Chart(document.getElementById("tpChart"), {
-  type: "scatter",
-  data: {
-    datasets: [
-      {
-        label: "April",
-        data: aprilTN.map(d => ({x:d.x,y:d.y*0.3,site:d.site})), // placeholder scaling
-        backgroundColor: "#f4a261",
-        pointRadius: 5
-      },
-      {
-        label: "September",
-        data: septemberTN.map(d => ({x:d.x,y:d.y*0.2,site:d.site})),
-        backgroundColor: "#e76f51",
-        pointRadius: 5
-      }
-    ]
-  },
-  options: {
-    plugins:{
-      title:{display:true,text:"Total Phosphorus Distribution"},
-      tooltip:{
-        callbacks:{
-          label:(ctx)=>ctx.raw.site+": "+ctx.raw.y.toFixed(3)+" mg/L"
-        }
-      }
-    },
-    scales:{
-      x:{min:-0.5,max:1.5,
-        ticks:{callback:(v)=>v===0?"April":(v===1?"September":"")}
-      },
-      y:{title:{display:true,text:"TP (mg/L)"}}
-    }
-  }
-});
-
-new Chart(document.getElementById("chlChart"), {
-  type: "scatter",
-  data: {
-    datasets: [
-      {
-        label: "April",
-        data: aprilTN.map(d => ({x:d.x,y:d.y*60,site:d.site})),
-        backgroundColor: "#2a9d8f",
-        pointRadius: 5
-      },
-      {
-        label: "September",
-        data: septemberTN.map(d => ({x:d.x,y:d.y*30,site:d.site})),
-        backgroundColor: "#264653",
-        pointRadius: 5
-      }
-    ]
-  },
-  options: {
-    plugins:{
-      title:{display:true,text:"Chlorophyll-a Distribution"},
-      tooltip:{
-        callbacks:{
-          label:(ctx)=>ctx.raw.site+": "+ctx.raw.y.toFixed(2)+" µg/L"
-        }
-      }
-    },
-    scales:{
-      x:{min:-0.5,max:1.5,
-        ticks:{callback:(v)=>v===0?"April":(v===1?"September":"")}
-      },
-      y:{title:{display:true,text:"Chlorophyll-a (µg/L)"}}
-    }
-  }
-});
 </script>
   
 </body>
