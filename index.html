@@ -290,38 +290,30 @@ new Chart(document.getElementById("salinityChart"), {
   data: {
     datasets: [
       {
-        label: "April Sites",
+        label: "April",
         data: [
-          {x: 0, y: 36}, {x: 0, y: 35}, {x: 0, y: 35},
-          {x: 0, y: 36}, {x: 0, y: 36}, {x: 0, y: 36},
-          {x: 0, y: 35}, {x: 0, y: 35}, {x: 0, y: 36},
-          {x: 0, y: 35}, {x: 0, y: 34}, {x: 0, y: 33}
+          { x: -0.2, y: 36 },
+          { x: -0.1, y: 35 },
+          { x: 0,    y: 34 },
+          { x: 0.1,  y: 35 },
+          { x: 0.2,  y: 36 },
+          { x: -0.15, y: 34 }
         ],
-        backgroundColor: "#5aa897",
-        pointRadius: 4
+        backgroundColor: "#2ca25f", // green
+        pointRadius: 5
       },
       {
-        label: "September Sites",
+        label: "September",
         data: [
-          {x: 1, y: 25}, {x: 1, y: 18}, {x: 1, y: 20},
-          {x: 1, y: 28}, {x: 1, y: 29}, {x: 1, y: 27},
-          {x: 1, y: 24}, {x: 1, y: 30}, {x: 1, y: 26},
-          {x: 1, y: 19}, {x: 1, y: 17}, {x: 1, y: 14}
+          { x: 0.8, y: 25 },
+          { x: 0.9, y: 28 },
+          { x: 1.0, y: 30 },
+          { x: 1.1, y: 24 },
+          { x: 1.2, y: 20 },
+          { x: 0.85, y: 27 }
         ],
-        backgroundColor: "#1f77b4",
-        pointRadius: 4
-      },
-      {
-        type: "line",
-        label: "Average",
-        data: [
-          {x: 0, y: 35},   // April avg
-          {x: 1, y: 24}    // Sept avg
-        ],
-        borderColor: "black",
-        borderWidth: 2,
-        pointRadius: 6,
-        showLine: true
+        backgroundColor: "#3182bd", // blue
+        pointRadius: 5
       }
     ]
   },
@@ -329,15 +321,19 @@ new Chart(document.getElementById("salinityChart"), {
     plugins: {
       title: {
         display: true,
-        text: "Salinity by Sampling Event"
+        text: "Salinity Distribution by Sampling Event"
       }
     },
     scales: {
       x: {
         type: "linear",
+        min: -0.5,
+        max: 1.5,
         ticks: {
           callback: function(value) {
-            return value === 0 ? "April" : "September";
+            if (value === 0) return "April";
+            if (value === 1) return "September";
+            return "";
           }
         },
         title: {
