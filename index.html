@@ -174,67 +174,6 @@
   </div>
 </section>
 
-  <script>
-const labels = ["April", "September"];
-
-const salinityData = [35, 24];
-const tnData = [0.6, 2.5];
-const tpData = [0.16, 0.13];
-const chlData = [30, 25];
-
-// SALINITY
-new Chart(document.getElementById("salinityChart"), {
-  type: "bar",
-  data: {
-    labels: labels,
-    datasets: [{
-      label: "Salinity (ppt)",
-      data: salinityData,
-      backgroundColor: "#5aa897"
-    }]
-  }
-});
-
-// TN
-new Chart(document.getElementById("tnChart"), {
-  type: "bar",
-  data: {
-    labels: labels,
-    datasets: [{
-      label: "Total Nitrogen (mg/L)",
-      data: tnData,
-      backgroundColor: "#1f77b4"
-    }]
-  }
-});
-
-// TP
-new Chart(document.getElementById("tpChart"), {
-  type: "bar",
-  data: {
-    labels: labels,
-    datasets: [{
-      label: "Total Phosphorus (mg/L)",
-      data: tpData,
-      backgroundColor: "#f4a261"
-    }]
-  }
-});
-
-// CHLOROPHYLL
-new Chart(document.getElementById("chlChart"), {
-  type: "bar",
-  data: {
-    labels: labels,
-    datasets: [{
-      label: "Chlorophyll-a (ug/L)",
-      data: chlData,
-      backgroundColor: "#2a9d8f"
-    }]
-  }
-});
-</script>
-
   <!-- DATA SECTION -->
 <section id="data" class="section">
   <h2>Water Quality Trends</h2>
@@ -329,6 +268,67 @@ function moveSlide(step) {
 </script>
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const labels = ["April", "September"];
+
+const salinityData = [35, 24];
+const tnData = [0.6, 2.5];
+const tpData = [0.16, 0.13];
+const chlData = [30, 25];
+
+// SALINITY
+new Chart(document.getElementById("salinityChart"), {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "Salinity (ppt)",
+      data: salinityData,
+      backgroundColor: "#5aa897"
+    }]
+  }
+});
+
+// TN
+new Chart(document.getElementById("tnChart"), {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "Total Nitrogen (mg/L)",
+      data: tnData,
+      backgroundColor: "#1f77b4"
+    }]
+  }
+});
+
+// TP
+new Chart(document.getElementById("tpChart"), {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "Total Phosphorus (mg/L)",
+      data: tpData,
+      backgroundColor: "#f4a261"
+    }]
+  }
+});
+
+// CHL
+new Chart(document.getElementById("chlChart"), {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [{
+      label: "Chlorophyll-a (ug/L)",
+      data: chlData,
+      backgroundColor: "#2a9d8f"
+    }]
+  }
+});
+</script>
   
 </body>
 </html>
