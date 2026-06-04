@@ -278,17 +278,58 @@ const tpData = [0.16, 0.13];
 const chlData = [30, 25];
 
 // SALINITY
+<script>
 new Chart(document.getElementById("salinityChart"), {
-  type: "bar",
+  type: "scatter",
   data: {
-    labels: labels,
-    datasets: [{
-      label: "Salinity (ppt)",
-      data: salinityData,
-      backgroundColor: "#5aa897"
-    }]
+    datasets: [
+      {
+        label: "April Sites",
+        data: [
+          { x: 0, y: 36 },
+          { x: 0, y: 35 },
+          { x: 0, y: 34 },
+          { x: 0, y: 33 }
+        ],
+        backgroundColor: "#5aa897"
+      },
+      {
+        label: "September Sites",
+        data: [
+          { x: 1, y: 25 },
+          { x: 1, y: 28 },
+          { x: 1, y: 30 },
+          { x: 1, y: 20 }
+        ],
+        backgroundColor: "#1f77b4"
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      x: {
+        type: "linear",
+        ticks: {
+          callback: function(value) {
+            return value === 0 ? "April" : "September";
+          }
+        },
+        title: {
+          display: true,
+          text: "Sampling Month"
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Salinity (ppt)"
+        }
+      }
+    }
   }
 });
+</script>
 
 // TN
 new Chart(document.getElementById("tnChart"), {
