@@ -179,14 +179,21 @@
   <h2>Water Quality Trends</h2>
   <p>Community-collected water quality data from previous sampling events.</p>
 
-  <div class="grid">
-    <div class="card">
-      <canvas id="salinityChart"></canvas>
-    </div>
+ <div class="card">
+  <canvas id="salinityChart"></canvas>
 
-    <div class="card">
-      <canvas id="tnChart"></canvas>
-    </div>
+  <p style="font-size: 14px; color: #555; margin-top: 10px;">
+    Salinity was generally lower during September sampling, reflecting seasonal freshwater influence.
+  </p>
+</div>
+
+<div class="card">
+  <canvas id="tnChart"></canvas>
+
+  <p style="font-size: 14px; color: #555; margin-top: 10px;">
+    Nutrient concentrations were higher during September sampling, likely influenced by wet-season runoff.
+  </p>
+</div>
 
     <div class="card">
       <canvas id="tpChart"></canvas>
@@ -285,27 +292,46 @@ new Chart(document.getElementById("salinityChart"), {
       {
         label: "April Sites",
         data: [
-          { x: 0, y: 36 },
-          { x: 0, y: 35 },
-          { x: 0, y: 34 },
-          { x: 0, y: 33 }
+          {x: 0, y: 36}, {x: 0, y: 35}, {x: 0, y: 35},
+          {x: 0, y: 36}, {x: 0, y: 36}, {x: 0, y: 36},
+          {x: 0, y: 35}, {x: 0, y: 35}, {x: 0, y: 36},
+          {x: 0, y: 35}, {x: 0, y: 34}, {x: 0, y: 33}
         ],
-        backgroundColor: "#5aa897"
+        backgroundColor: "#5aa897",
+        pointRadius: 4
       },
       {
         label: "September Sites",
         data: [
-          { x: 1, y: 25 },
-          { x: 1, y: 28 },
-          { x: 1, y: 30 },
-          { x: 1, y: 20 }
+          {x: 1, y: 25}, {x: 1, y: 18}, {x: 1, y: 20},
+          {x: 1, y: 28}, {x: 1, y: 29}, {x: 1, y: 27},
+          {x: 1, y: 24}, {x: 1, y: 30}, {x: 1, y: 26},
+          {x: 1, y: 19}, {x: 1, y: 17}, {x: 1, y: 14}
         ],
-        backgroundColor: "#1f77b4"
+        backgroundColor: "#1f77b4",
+        pointRadius: 4
+      },
+      {
+        type: "line",
+        label: "Average",
+        data: [
+          {x: 0, y: 35},   // April avg
+          {x: 1, y: 24}    // Sept avg
+        ],
+        borderColor: "black",
+        borderWidth: 2,
+        pointRadius: 6,
+        showLine: true
       }
     ]
   },
   options: {
-    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Salinity by Sampling Event"
+      }
+    },
     scales: {
       x: {
         type: "linear",
@@ -316,7 +342,7 @@ new Chart(document.getElementById("salinityChart"), {
         },
         title: {
           display: true,
-          text: "Sampling Month"
+          text: "Sampling Event"
         }
       },
       y: {
@@ -328,6 +354,7 @@ new Chart(document.getElementById("salinityChart"), {
     }
   }
 });
+
 </script>
 
 // TN
