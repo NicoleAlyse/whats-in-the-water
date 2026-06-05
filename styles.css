@@ -24,11 +24,6 @@ h1, h2, h3 {
   font-size: 14px;
 }
 
-#nav-links {
-  display: flex;
-  align-items: center;
-}
-
 .hero {
   height: 80vh;
   display: flex;
