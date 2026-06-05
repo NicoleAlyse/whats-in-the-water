@@ -361,3 +361,48 @@ iframe {
 #nav-links a:hover {
   background: rgba(255,255,255,0.1);
 }
+
+/* FLIP CARDS */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* FRONT */
+.flip-front {
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* BACK */
+.flip-back {
+  background: #0f3d3e;
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 14px;
+  line-height: 1.4;
+}
