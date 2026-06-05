@@ -97,8 +97,9 @@ h1, h2, h3 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
 }
 
 .grid .card:not(:has(iframe)) {
@@ -115,9 +116,9 @@ h1, h2, h3 {
   text-align: center;
 }
 
-.card:hover {
+.flip-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
 }
 
 .gallery {
