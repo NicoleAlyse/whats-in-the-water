@@ -12,7 +12,14 @@
 
 <header class="nav">
   <div class="logo">What’s In The Water</div>
-<nav>
+
+  <!-- HAMBURGER BUTTON -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    ☰
+  </div>
+
+  <nav id="nav-links">
+
   <a href="#about">About</a>
   <a href="#sampling">How It Works</a>
   <a href="#map">Map</a>
@@ -646,6 +653,13 @@ function baseOptions(title, yLabel) {
   };
 }
 
+</script>
+
+  <script>
+function toggleMenu() {
+  const nav = document.getElementById("nav-links");
+  nav.classList.toggle("active");
+}
 </script>
   
 </body>
