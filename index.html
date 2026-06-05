@@ -655,11 +655,22 @@ function baseOptions(title, yLabel) {
 
 </script>
 
-  <script>
+<script>
 function toggleMenu() {
   const nav = document.getElementById("nav-links");
   nav.classList.toggle("active");
 }
+
+// CLOSE MENU WHEN CLICKING OUTSIDE
+document.addEventListener("click", function(event) {
+  const nav = document.getElementById("nav-links");
+  const toggle = document.querySelector(".menu-toggle");
+
+  // If the click is NOT inside the menu OR the button
+  if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+    nav.classList.remove("active");
+  }
+});
 </script>
   
 </body>
